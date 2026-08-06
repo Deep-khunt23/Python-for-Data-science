@@ -1,0 +1,48 @@
+# Introduction to Applied Data Science with Python
+# Mini Project
+
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.linear_model import LinearRegression
+
+# Create Dataset
+data = {
+    "Hours_Studied": [1, 2, 3, 4, 5, 6, 7, 8],
+    "Marks": [35, 40, 50, 55, 65, 70, 80, 90]
+}
+
+df = pd.DataFrame(data)
+
+# Display Dataset
+print("Dataset:")
+print(df)
+
+# Statistics
+print("\nAverage Marks:", df["Marks"].mean())
+print("Maximum Marks:", df["Marks"].max())
+print("Minimum Marks:", df["Marks"].min())
+
+# NumPy Operations
+marks = np.array(df["Marks"])
+print("\nNumPy Mean:", np.mean(marks))
+print("NumPy Standard Deviation:", np.std(marks))
+
+# Plot Graph
+plt.scatter(df["Hours_Studied"], df["Marks"])
+plt.title("Study Hours vs Marks")
+plt.xlabel("Hours Studied")
+plt.ylabel("Marks")
+plt.grid(True)
+plt.show()
+
+# Linear Regression
+X = df[["Hours_Studied"]]
+y = df["Marks"]
+
+model = LinearRegression()
+model.fit(X, y)
+
+# Prediction
+predicted = model.predict([[9]])
+print("\nPredicted Marks for 9 Hours of Study:", predicted[0])
